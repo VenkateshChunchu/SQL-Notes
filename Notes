@@ -1,0 +1,172 @@
+If we want to drop column from existing table that syntax will be like this
+
+
+ALTER TABLE Table_Name DROP COLUMN COLUMN_NAME
+Ex:
+
+ALTER TABLE emp_table DROP COLUMN Manager_Name
+From the above query declaration column “Manager_Name” will drop from emp_table
+
+
+======================================================================================
+Query to modify existing column datatype in table
+
+If we want to modify existing column datatype from data table that syntax will be like this
+
+
+ALTER TABLE Table_Name ALTER COLUMN COLUMN_NAME DATATYPE
+Ex:
+
+
+ALTER TABLE emp_table ALTER COLUMN Manager_Name nvarchar(max)
+
+From the above query declaration I changed “Manager_Name” column datatype from VARCHAR(50) to nvarchar(max)
+
+
+======================================================================================
+
+To get only month and year from date in sql server we need to write the query like this
+
+
+SELECT CONVERT(CHAR(4), yourdatecolumn, 100) + CONVERT(CHAR(4), yourdatecolumn, 120)FROM yourtablename
+
+Example
+
+
+SELECT CONVERT(CHAR(4), getdate(), 100) + CONVERT(CHAR(4), getdate(), 120)
+======================================================================================
+
+To clear sql server connection servers from dropdown we need to remove “mru.dat” file from system folder. We can remove “mru.dat” file in different ways
+
+First method go to “C:\Documents and Settings\\Application Data\Microsoft\Microsoft SQL Server\100\Tools\Shell\SqlStudio.bin” or “C:\Documents and Settings\[user]\Application Data\Microsoft\Microsoft SQL Server\100\Tools\ShellSEM\mru.dat or SqlStudio.bin”
+
+
+======================================================================================
+
+I have a requirement like need to get user details whose names between A – C range in SQL server for that I written query like as shown below
+
+
+
+SELECT * FROM UserDetails WHERE Name LIKE '[A-C]%'
+
+Whenever we run above query it will return all user details which are in between [A-C] range
+======================================================================================
+
+To get stored procedure last modified date in SQL server we need to write the query like as shown below
+
+
+SELECT name, create_date, modify_date FROM sys.objects WHERE type = 'P'
+Whenever we run above query it will return all the procedures created date and modified date of your database
+
+
+================================
+
+If you want to get specific procedure modified date we need to write the query like this
+
+
+SELECT name, create_date, modify_date FROM sys.objects WHERE type = 'P' AND name like '%your procedure name%'
+
+=======================================================================================
+To get all the tables in SQL server 2008 database we need to write the query like as shown below
+
+
+USE SampleDB
+SELECT * FROM information_schema.tables
+
+                  OR   
+
+USE SampleDB
+SELECT * FROM SYS.tables
+
+======================================================================================
+
+
+We can get date or time in different formats from date time field using different styles. Now I will display different format of dates with samples check it 
+
+
+DECLARE @DateTime DATETIME
+ SELECT @DateTime = '2010/05/20 11:21:13'
+
+/*For mm/dd/yyyy format*/
+Select CONVERT(VARCHAR(10),@DateTime ,101) as Date
+
+
+
+/*For yyyy.mm.dd format*/
+Select CONVERT(VARCHAR(10),@DateTime ,102) as Date
+
+
+
+/*For dd/mm/yyyy format*/
+SELECT CONVERT(VARCHAR(10),@DateTime ,103) AS Date
+
+
+
+/*For dd.mm.yyyy format*/
+SELECT CONVERT(VARCHAR(10),@DateTime ,104) AS Date
+
+
+
+/*For dd-mm-yyyy format*/
+SELECT CONVERT(VARCHAR(10),@DateTime ,105) AS Date
+
+
+
+/*For hh:mi:ss format*/
+SELECT CONVERT(VARCHAR(10),@DateTime ,108) AS Date
+
+
+
+/*For mm-dd-yyyy format*/
+SELECT CONVERT(VARCHAR(10),@DateTime ,110) AS Date
+
+
+
+/*For yyyy/mm/dd format*/
+SELECT CONVERT(VARCHAR(10),@DateTime ,111) AS Date
+
+
+
+/*For yyyymmdd format*/
+SELECT CONVERT(VARCHAR(10),@DateTime ,112) AS Date
+
+
+==================================================================================
+
+If we want to get only time from datetime column we need to write the query like as shown below
+
+
+DECLARE @DateTime DATETIME
+SELECT @DateTime = GETDATE()
+SELECT CONVERT(VARCHAR(10),@DateTime ,108) AS Time
+If we run above query we will get only time from datetime field like as shown below
+
+Output
+
+Time
+
+07:29:14
+
+===================================================================================
+
+
+If we want to get list procedures which contains particular table name we need to write the query like as shown below
+
+
+SELECT Name FROM sys.procedures WHERE OBJECT_DEFINITION(OBJECT_ID) LIKE '%YourTableName%'
+Example Query
+
+
+SELECT Name FROM sys.procedures WHERE OBJECT_DEFINITION(OBJECT_ID) LIKE '%UserInformation%'
+Once we run above query we will get output like as shown below
+
+Output
+
+Name
+
+searchUserDetails
+
+========================================================================================
+
+
+
