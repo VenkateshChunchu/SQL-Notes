@@ -1,0 +1,19 @@
+http://www.codeproject.com/Articles/35665/Top-steps-to-optimize-data-access-in-SQL-Serv
+
+There are few points that we should have to care for improving the performance: 
+      1) Database design and normalization. 2) Indexes 3) DB Statistics 
+      4) Use EXISTS instead of IN because the former stops processing once it has found a match.
+      5) Avoid scalar subqueries in the SELECT-list. 
+      6) Use joins instead of subqueries, as it gives the optimizer more room to play around in.
+      7) Avoid implicit conversions of data types, especially in the WHERE clause 
+      8) Avoid, whenever possible, comparison operators such as <>, NOT IN, NOT EXISTS, and LIKE without a leading '%' for indexed columns in predicates. 
+      9) Avoid DISTINCT unless you have to use it.
+
+      1. HAVING OPTIMAL INDEXES: It means neither less nor more indexes should be there in a tables. for example fields used in where clauses should have non-clustered indexes etc.
+          It should be evaluated properly before putting index and DB adviser tools can be used here as well. 
+      2. RUNNING STAT REGULARLY: Running DB STATISTICS organizes the indexes for faster retrieval. I have personally experiences this. 
+      3. RESOURCE (RAM/CPU): Keeping an eye on resource availability is equally important. Sometime due to resource bottleneck, DB runs slow.
+
+How to use a table which is not having a Primary Key in entity framework?
+      The Entity framework will not support to have a table without primary key, 
+      But we can overcome this issue by accessing the table with additional column via a view and marking the new column as Primary in entity framework.
